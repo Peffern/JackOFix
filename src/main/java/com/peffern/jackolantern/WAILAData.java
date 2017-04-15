@@ -2,8 +2,12 @@ package com.peffern.jackolantern;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
+import com.bioxx.tfc.Blocks.Vanilla.BlockCustomPumpkin;
 import com.bioxx.tfc.Core.TFC_Core;
 import com.bioxx.tfc.Core.TFC_Time;
+import com.bioxx.tfc.TileEntities.TELightEmitter;
 import com.bioxx.tfc.api.TFCBlocks;
 import com.bioxx.tfc.api.TFCOptions;
 import com.bioxx.tfc.api.Util.Helper;
@@ -38,6 +42,7 @@ public class WAILAData implements IWailaDataProvider
 	@Override
 	public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor,
 			IWailaConfigHandler config) {
+		
 Block block = accessor.getBlock();
 		
 		if(block == TFCBlocks.litPumpkin)
@@ -69,7 +74,8 @@ Block block = accessor.getBlock();
 
 	@Override
 	public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te, NBTTagCompound tag, World world, int x,
-			int y, int z) {
+			int y, int z) 
+	{
 		if (te != null)
 			te.writeToNBT(tag);
 		return tag;
@@ -79,6 +85,7 @@ Block block = accessor.getBlock();
 	{
 		reg.registerBodyProvider(new WAILAData(), BlockCustomCustomPumpkin.class);
 		reg.registerNBTProvider(new WAILAData(), BlockCustomCustomPumpkin.class);
+		
 	}
 
 }
