@@ -1,6 +1,7 @@
 package com.peffern.jackolantern;
 
 import java.lang.reflect.Field;
+import java.util.Random;
 
 import com.bioxx.tfc.Blocks.BlockTerra;
 import com.bioxx.tfc.Blocks.Vanilla.BlockCustomPumpkin;
@@ -53,5 +54,14 @@ public class BlockBurntOutJackOLantern extends BlockCustomPumpkin
 			world.setBlock(x, y, z, TFCBlocks.litPumpkin, dir, 3);
 		}
 		return true;
+	}
+	
+	@Override
+	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+	{
+		if(JackOFix.enablePickup)
+			return super.getItemDropped(p_149650_1_, p_149650_2_, p_149650_3_);
+		else
+			return null;
 	}
 }

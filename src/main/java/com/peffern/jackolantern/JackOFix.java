@@ -41,9 +41,13 @@ public class JackOFix
 	
     public static final String MODID = "JackOFix";
     public static final String MODNAME = "JackOFix";
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "1.2";
     
     static int jackOLanternBurnTime = 144;
+    
+    static int jackOLanternLightLevel = 16;
+    
+    static boolean enablePickup = true;
     
     static Configuration config;
     
@@ -54,6 +58,8 @@ public class JackOFix
     	config = new Configuration(event.getSuggestedConfigurationFile());
     	config.load();
     	jackOLanternBurnTime = config.get(Configuration.CATEGORY_GENERAL, "jackOLanternBurnTime", 144, "This is how long the jack o'Lantern burns for. Set to 0 for them to last forever.").getInt();
+    	jackOLanternLightLevel = config.get(Configuration.CATEGORY_GENERAL, "jackOLanternLightLevel",16,"This is the brightness of the jack o'Lantern (0-16)").getInt();
+    	enablePickup = !config.get(Configuration.CATEGORY_GENERAL, "enableJackOLanternsRot", false, "If this is set to true, once jack o'Lanterns are placed they cannot be picked up").getBoolean();
     	if(config.hasChanged())
     		config.save();
     }

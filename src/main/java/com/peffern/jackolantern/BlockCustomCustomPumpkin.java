@@ -121,6 +121,30 @@ public class BlockCustomCustomPumpkin extends BlockCustomPumpkin implements ITil
 			return null;
 	}
 	
+	/**
+	 * Hijack the setLightLevel call so that we control the light level
+	 */
+	@Override
+	public Block setLightLevel(float l)
+	{
+		int light = JackOFix.jackOLanternLightLevel;
+		
+		if (light > 16)
+			light = 16;
+		if(light < 0)
+			light = 0;
+		return super.setLightLevel(light / 16F);
+	}
+	
+	@Override
+	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+	{
+		if(JackOFix.enablePickup || !this.isLit)
+			return super.getItemDropped(p_149650_1_, p_149650_2_, p_149650_3_);
+		else
+			return null;
+	}
+	
 	
 	
 	
